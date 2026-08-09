@@ -1,1 +1,2337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>No Luck Enterprises</title>
+
+  <meta
+    name="description"
+    content="No Luck Enterprises is a vertically integrated global music company built to operate across the entire lifecycle of an artist's career."
+  />
+
+  <style>
+    /* =========================================================
+       NO LUCK ENTERPRISES
+       Black / Gold Entertainment Company Website
+    ========================================================== */
+
+    :root {
+      --black: #050505;
+      --black-soft: #0a0a0a;
+      --black-card: #0e0e0e;
+
+      --white: #f5f1e8;
+      --muted: #aaa69b;
+
+      --gold: #e8ca78;
+      --gold-soft: #c7a95c;
+      --gold-dark: #8f7234;
+
+      --border: rgba(232, 202, 120, 0.18);
+      --white-border: rgba(255,255,255,.09);
+
+      --max-width: 1320px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family:
+        Inter,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================================
+       GLOBAL
+    ========================================================== */
+
+    .container {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 125px 0;
+      position: relative;
+    }
+
+    .section-number {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .22em;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 7vw, 96px);
+      font-weight: 700;
+      line-height: .91;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    /* =========================================================
+       REVEAL ANIMATIONS
+    ========================================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity .85s cubic-bezier(.2,.7,.2,1),
+        transform .85s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================== */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      border-bottom: 1px solid transparent;
+      transition:
+        background .3s ease,
+        backdrop-filter .3s ease,
+        border-color .3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(5,5,5,.86);
+      backdrop-filter: blur(18px);
+      border-bottom-color: var(--white-border);
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 48px), var(--max-width));
+      height: 82px;
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: rgba(245,241,232,.76);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-button {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 25px;
+      height: 1px;
+      background: currentColor;
+      margin: 6px 0;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(232,202,120,.10) 0%,
+          rgba(232,202,120,.045) 26%,
+          transparent 68%
+        );
+
+      filter: blur(20px);
+      z-index: -3;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+
+      background-size: 80px 80px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.55),
+          transparent 88%
+        );
+
+      z-index: -2;
+    }
+
+    .hero-inner {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin: 0 auto;
+
+      padding-top: 125px;
+      padding-bottom: 70px;
+
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-logo-wrap {
+      position: relative;
+
+      width: clamp(145px, 18vw, 245px);
+
+      margin-bottom: 28px;
+
+      animation: logoFloat 5s ease-in-out infinite;
+    }
+
+    .hero-logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 13%;
+
+      background: rgba(232,202,120,.16);
+      filter: blur(42px);
+      border-radius: 50%;
+
+      z-index: -1;
+    }
+
+    .hero-logo {
+      width: 100%;
+      filter:
+        drop-shadow(0 0 16px rgba(232,202,120,.10))
+        drop-shadow(0 20px 40px rgba(0,0,0,.55));
+    }
+
+    @keyframes logoFloat {
+      0%,100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .hero-kicker {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-size: clamp(58px, 10.4vw, 154px);
+      line-height: .76;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .outlined {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,202,120,.75);
+      text-stroke: 1px rgba(232,202,120,.75);
+    }
+
+    .hero-tagline {
+      max-width: 670px;
+      margin-top: 43px;
+
+      font-family: Georgia, Times New Roman, serif;
+      font-size: clamp(19px, 2vw, 29px);
+      line-height: 1.35;
+
+      color: rgba(245,241,232,.92);
+    }
+
+    .hero-description {
+      max-width: 600px;
+      margin-top: 18px;
+
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+
+      margin-top: 38px;
+
+      padding: 14px 0;
+
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .hero-button span:last-child {
+      transition: transform .2s ease;
+    }
+
+    .hero-button:hover span:last-child {
+      transform: translateY(4px);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 27px;
+
+      width: min(calc(100% - 48px), var(--max-width));
+
+      display: flex;
+      justify-content: space-between;
+
+      color: rgba(255,255,255,.36);
+
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       MARQUEE
+    ========================================================== */
+
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      background: #090806;
+    }
+
+    .marquee {
+      width: max-content;
+
+      display: flex;
+      gap: 40px;
+
+      padding: 25px 0;
+
+      animation: marquee 27s linear infinite;
+    }
+
+    .marquee span {
+      white-space: nowrap;
+
+      color: var(--gold);
+
+      font-size: clamp(22px, 3vw, 42px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+    }
+
+    .marquee .star {
+      opacity: .45;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* =========================================================
+       ABOUT
+    ========================================================== */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-label {
+      position: sticky;
+      top: 130px;
+    }
+
+    .about-big {
+      font-family: Georgia, Times New Roman, serif;
+
+      font-size: clamp(33px, 4.6vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+
+      margin-bottom: 45px;
+    }
+
+    .about-text-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 34px;
+    }
+
+    .about-text-grid p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* =========================================================
+       VALUE CHAIN
+    ========================================================== */
+
+    .value-chain {
+      padding: 90px 0;
+      border-top: 1px solid var(--white-border);
+      border-bottom: 1px solid var(--white-border);
+    }
+
+    .chain-title {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .chain-grid {
+      display: grid;
+      grid-template-columns: repeat(7, auto);
+      align-items: center;
+      gap: 24px;
+    }
+
+    .chain-item {
+      font-size: clamp(21px, 2.8vw, 39px);
+      font-weight: 600;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+    }
+
+    .chain-arrow {
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    /* =========================================================
+       CAPABILITIES
+    ========================================================== */
+
+    .capabilities-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 50px;
+      margin-bottom: 65px;
+    }
+
+    .capabilities-header p {
+      max-width: 405px;
+    }
+
+    .cap-list {
+      border-top: 1px solid var(--white-border);
+    }
+
+    .cap-row {
+      position: relative;
+
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr 50px;
+
+      gap: 25px;
+      align-items: center;
+
+      min-height: 130px;
+
+      border-bottom: 1px solid var(--white-border);
+
+      overflow: hidden;
+
+      transition:
+        padding-left .3s ease,
+        background .3s ease;
+    }
+
+    .cap-row::before {
+      content: "";
+      position: absolute;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(232,202,120,.11),
+          transparent
+        );
+
+      transition: width .45s ease;
+    }
+
+    .cap-row:hover::before {
+      width: 100%;
+    }
+
+    .cap-row:hover {
+      padding-left: 18px;
+    }
+
+    .cap-number {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .17em;
+    }
+
+    .cap-name {
+      position: relative;
+
+      font-size: clamp(23px, 3vw, 46px);
+      font-weight: 600;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+    }
+
+    .cap-desc {
+      position: relative;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+      max-width: 400px;
+    }
+
+    .cap-plus {
+      position: relative;
+      color: var(--gold);
+      font-size: 22px;
+      text-align: right;
+    }
+
+    /* =========================================================
+       CREDENTIALS
+    ========================================================== */
+
+    .credentials {
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(232,202,120,.07),
+          transparent 35%
+        ),
+        var(--black-soft);
+    }
+
+    .credentials-intro {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 85px;
+    }
+
+    .credential-description {
+      max-width: 480px;
+    }
+
+    .credential-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .credential-card {
+      position: relative;
+      overflow: hidden;
+
+      padding: 32px;
+
+      min-height: 310px;
+
+      border: 1px solid var(--white-border);
+      background: rgba(255,255,255,.018);
+
+      transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease;
+    }
+
+    .credential-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(232,202,120,.4);
+      background: rgba(232,202,120,.035);
+    }
+
+    .credential-card.large {
+      grid-column: span 7;
+    }
+
+    .credential-card.medium {
+      grid-column: span 5;
+    }
+
+    .credential-card.half {
+      grid-column: span 6;
+    }
+
+    .credential-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 48px;
+
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .credential-card h3 {
+      font-size: clamp(29px, 4vw, 58px);
+      line-height: .97;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      margin-bottom: 27px;
+    }
+
+    .credit-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .credit-list li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .credential-watermark {
+      position: absolute;
+      right: -8px;
+      bottom: -30px;
+
+      font-size: 130px;
+      font-weight: 800;
+
+      color: rgba(232,202,120,.028);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* =========================================================
+       TOURING
+    ========================================================== */
+
+    .touring {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .touring::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 20% 50%,
+          rgba(232,202,120,.065),
+          transparent 36%
+        );
+
+      pointer-events: none;
+    }
+
+    .touring-title {
+      margin-bottom: 80px;
+    }
+
+    .artist-list {
+      border-top: 1px solid var(--white-border);
+    }
+
+    .artist-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 23px 0;
+
+      border-bottom: 1px solid var(--white-border);
+    }
+
+    .artist-row span:first-child {
+      font-size: clamp(26px, 4vw, 55px);
+      font-weight: 600;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      transition:
+        transform .25s ease,
+        color .25s ease;
+    }
+
+    .artist-row span:last-child {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .21em;
+      text-transform: uppercase;
+    }
+
+    .artist-row:hover span:first-child {
+      color: var(--gold);
+      transform: translateX(13px);
+    }
+
+    /* =========================================================
+       FESTIVALS
+    ========================================================== */
+
+    .festivals {
+      background: var(--gold);
+      color: #090909;
+    }
+
+    .festivals .section-number,
+    .festivals .eyebrow {
+      color: #090909;
+    }
+
+    .festival-heading {
+      margin-bottom: 70px;
+    }
+
+    .festival-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      border-top: 1px solid rgba(0,0,0,.25);
+      border-left: 1px solid rgba(0,0,0,.25);
+    }
+
+    .festival {
+      min-height: 160px;
+
+      display: flex;
+      align-items: flex-end;
+
+      padding: 25px;
+
+      border-right: 1px solid rgba(0,0,0,.25);
+      border-bottom: 1px solid rgba(0,0,0,.25);
+
+      font-size: clamp(18px, 2.4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+
+      transition:
+        background .25s ease,
+        color .25s ease;
+    }
+
+    .festival:hover {
+      background: #090909;
+      color: var(--gold);
+    }
+
+    .festival-note {
+      max-width: 620px;
+
+      margin-top: 45px;
+
+      font-family: Georgia, Times New Roman, serif;
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    /* =========================================================
+       BRAND PARTNERSHIPS
+    ========================================================== */
+
+    .brands-heading {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 75px;
+    }
+
+    .brands-heading p {
+      max-width: 480px;
+      justify-self: end;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      border-top: 1px solid var(--white-border);
+      border-left: 1px solid var(--white-border);
+    }
+
+    .brand-name {
+      min-height: 190px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-right: 1px solid var(--white-border);
+      border-bottom: 1px solid var(--white-border);
+
+      font-size: clamp(18px, 2.2vw, 30px);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      text-transform: uppercase;
+
+      transition:
+        background .3s ease,
+        color .3s ease;
+    }
+
+    .brand-name:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* =========================================================
+       MANIFESTO / QUOTE
+    ========================================================== */
+
+    .manifesto {
+      padding: 165px 0;
+      text-align: center;
+
+      border-top: 1px solid var(--white-border);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto-logo {
+      position: absolute;
+
+      width: min(620px, 70vw);
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      opacity: .028;
+
+      pointer-events: none;
+    }
+
+    .manifesto h2 {
+      position: relative;
+
+      max-width: 1050px;
+      margin: 0 auto;
+
+      font-family: Georgia, Times New Roman, serif;
+
+      font-size: clamp(42px, 7.2vw, 102px);
+      line-height: .98;
+      letter-spacing: -.048em;
+    }
+
+    .manifesto h2 span {
+      color: var(--gold);
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================== */
+
+    .contact {
+      min-height: 76vh;
+
+      display: flex;
+      align-items: center;
+
+      border-top: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 50% 110%,
+          rgba(232,202,120,.14),
+          transparent 45%
+        );
+    }
+
+    .contact-inner {
+      text-align: center;
+    }
+
+    .contact-logo {
+      width: 80px;
+      margin: 0 auto 28px;
+    }
+
+    .contact h2 {
+      font-size: clamp(53px, 9.5vw, 138px);
+      line-height: .78;
+      letter-spacing: -.072em;
+      text-transform: uppercase;
+    }
+
+    .contact h2 span {
+      display: block;
+      color: var(--gold);
+    }
+
+    .contact-copy {
+      max-width: 540px;
+      margin: 42px auto 0;
+
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      margin-top: 36px;
+    }
+
+    .contact-link {
+      padding: 14px 21px;
+
+      border: 1px solid var(--border);
+
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+
+      transition:
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+    }
+
+    .contact-link:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+
+    footer {
+      border-top: 1px solid var(--white-border);
+      padding: 30px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: rgba(255,255,255,.37);
+
+      font-size: 9px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================== */
+
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+
+      z-index: 999;
+
+      background: rgba(5,5,5,.98);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    .mobile-nav li {
+      margin: 20px 0;
+    }
+
+    .mobile-nav a {
+      font-size: clamp(32px, 9vw, 58px);
+      text-transform: uppercase;
+      letter-spacing: -.04em;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--gold);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+
+    @media (max-width: 960px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about-label {
+        position: static;
+      }
+
+      .chain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chain-arrow {
+        transform: rotate(90deg);
+        width: fit-content;
+      }
+
+      .capabilities-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cap-row {
+        grid-template-columns: 52px 1fr 45px;
+        padding: 25px 0;
+      }
+
+      .cap-desc {
+        grid-column: 2 / 4;
+        padding-bottom: 8px;
+      }
+
+      .credential-card.large,
+      .credential-card.medium,
+      .credential-card.half {
+        grid-column: span 12;
+      }
+
+      .credentials-intro {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .festival-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .brands-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .brands-heading p {
+        justify-self: start;
+      }
+
+      .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .container,
+      .nav-inner,
+      .hero-inner,
+      .hero-bottom {
+        width: min(calc(100% - 32px), var(--max-width));
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .nav-inner {
+        height: 70px;
+      }
+
+      .brand-text {
+        font-size: 11px;
+      }
+
+      .hero-inner {
+        padding-top: 110px;
+      }
+
+      .hero-title {
+        line-height: .82;
+      }
+
+      .hero-tagline {
+        margin-top: 32px;
+      }
+
+      .hero-bottom {
+        display: none;
+      }
+
+      .about-text-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .credential-card {
+        padding: 25px;
+      }
+
+      .festival-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .festival {
+        min-height: 110px;
+      }
+
+      .brand-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-name {
+        min-height: 120px;
+      }
+
+      .artist-row {
+        align-items: flex-end;
+      }
+
+      .artist-row span:last-child {
+        max-width: 95px;
+        text-align: right;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .contact {
+        min-height: 68vh;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- =======================================================
+       NAVIGATION
+  ======================================================== -->
+
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#top" class="nav-brand">
+        <img
+          src="assets/images/logo.jpeg"
+          alt="No Luck Enterprises logo"
+          class="nav-logo"
+        />
+        <span class="brand-text">No Luck Enterprises</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#live">Live</a></li>
+        <li><a href="#brands">Partnerships</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="menu-button" id="menuButton" aria-label="Open menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#brands">Partnerships</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <div class="hero-logo-wrap">
+          <img
+            src="assets/images/logo.jpeg"
+            alt="No Luck Enterprises"
+            class="hero-logo"
+          />
+        </div>
+
+        <div class="hero-kicker">
+          Global Music · Entertainment · Artist Infrastructure
+        </div>
+
+        <h1 class="hero-title">
+          <span>No Luck</span>
+          <span class="outlined">Enterprises</span>
+        </h1>
+
+        <p class="hero-tagline">
+          Building artists beyond the release.
+        </p>
+
+        <p class="hero-description">
+          A vertically integrated global music company built to operate
+          across the entire lifecycle of an artist's career —
+          from creation to global scale.
+        </p>
+
+        <a href="#about" class="hero-button">
+          <span>Explore</span>
+          <span>↓</span>
+        </a>
+
+      </div>
+
+      <div class="hero-bottom">
+        <span>Music Without Fragmentation</span>
+        <span>Creation → Global Scale</span>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         MARQUEE
+    ======================================================== -->
+
+    <div class="marquee-section">
+
+      <div class="marquee">
+
+        <span>Creation</span>
+        <span class="star">✦</span>
+        <span>Marketing</span>
+        <span class="star">✦</span>
+        <span>Distribution</span>
+        <span class="star">✦</span>
+        <span>Monetization</span>
+        <span class="star">✦</span>
+
+        <span>Creation</span>
+        <span class="star">✦</span>
+        <span>Marketing</span>
+        <span class="star">✦</span>
+        <span>Distribution</span>
+        <span class="star">✦</span>
+        <span>Monetization</span>
+        <span class="star">✦</span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================
+         ABOUT
+    ======================================================== -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="about-layout">
+
+          <div class="about-label reveal">
+            <span class="section-number">01 / About</span>
+
+            <h2 class="section-title">
+              One<br>
+              System.
+            </h2>
+          </div>
+
+
+          <div>
+
+            <p class="about-big reveal">
+              No Luck Enterprises is
+              <span class="gold">not a traditional production company.</span>
+            </p>
+
+            <div class="about-text-grid reveal">
+
+              <p>
+                We are a vertically integrated global music company built
+                to operate across the entire lifecycle of an artist's career —
+                from creation to global scale.
+              </p>
+
+              <p>
+                Our model is designed to eliminate fragmentation in the music
+                industry by bringing production, marketing, distribution,
+                and monetization under one unified system.
+              </p>
+
+              <p>
+                Through high-level creative execution, strategic partnerships,
+                and scalable digital infrastructure, we position artists
+                to compete on a global level.
+              </p>
+
+              <p>
+                We focus on building long-term artist value —
+                not one-off releases.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         VALUE CHAIN
+    ======================================================== -->
+
+    <section class="value-chain">
+
+      <div class="container">
+
+        <p class="chain-title reveal">
+          The Full Value Chain
+        </p>
+
+        <div class="chain-grid reveal">
+
+          <span class="chain-item">Creation</span>
+          <span class="chain-arrow">→</span>
+
+          <span class="chain-item">Marketing</span>
+          <span class="chain-arrow">→</span>
+
+          <span class="chain-item">Distribution</span>
+          <span class="chain-arrow">→</span>
+
+          <span class="chain-item">Monetization</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CAPABILITIES
+    ======================================================== -->
+
+    <section class="section" id="capabilities">
+
+      <div class="container">
+
+        <div class="capabilities-header">
+
+          <div class="reveal">
+
+            <span class="section-number">
+              02 / Capabilities
+            </span>
+
+            <h2 class="section-title">
+              Built For<br>
+              Scale.
+            </h2>
+
+          </div>
+
+
+          <p class="section-copy reveal">
+            An integrated creative and commercial infrastructure designed
+            to develop artists, scale audiences, strengthen ownership,
+            and create long-term global value.
+          </p>
+
+        </div>
+
+
+        <div class="cap-list">
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">01</span>
+
+            <span class="cap-name">
+              Music Production
+            </span>
+
+            <span class="cap-desc">
+              A-list music production, engineering,
+              and visual content systems.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">02</span>
+
+            <span class="cap-name">
+              Global Marketing
+            </span>
+
+            <span class="cap-desc">
+              Major-label marketing, PR,
+              and global distribution partnerships.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">03</span>
+
+            <span class="cap-name">
+              Digital Growth
+            </span>
+
+            <span class="cap-desc">
+              Scalable social and content growth
+              infrastructure built for audience expansion.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">04</span>
+
+            <span class="cap-name">
+              Artist IP
+            </span>
+
+            <span class="cap-desc">
+              Intellectual property development,
+              ownership strategy, and long-term positioning.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">05</span>
+
+            <span class="cap-name">
+              Live & Touring
+            </span>
+
+            <span class="cap-desc">
+              Touring, live events,
+              festivals, and large-scale production integration.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+
+          <div class="cap-row reveal">
+
+            <span class="cap-number">06</span>
+
+            <span class="cap-name">
+              Monetization
+            </span>
+
+            <span class="cap-desc">
+              Long-term artist ecosystem monetization
+              beyond individual releases.
+            </span>
+
+            <span class="cap-plus">＋</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CREDENTIALS
+    ======================================================== -->
+
+    <section class="section credentials" id="credentials">
+
+      <div class="container">
+
+        <div class="credentials-intro">
+
+          <div class="reveal">
+
+            <span class="section-number">
+              03 / Credentials
+            </span>
+
+            <h2 class="section-title">
+              Proven<br>
+              At Scale.
+            </h2>
+
+          </div>
+
+
+          <p class="section-copy credential-description reveal">
+            Our team brings together experience across award-nominated
+            projects, multi-platinum releases, global touring,
+            and major brand partnerships.
+          </p>
+
+        </div>
+
+
+        <div class="credential-grid">
+
+          <!-- Grammy -->
+
+          <article class="credential-card large reveal">
+
+            <div class="credential-top">
+              <span>Award Recognition</span>
+              <span>Grammy</span>
+            </div>
+
+            <h3>
+              Grammy<br>
+              Nominated
+            </h3>
+
+            <ul class="credit-list">
+
+              <li>
+                Best Rap Album —
+                Revenge of the Dreamers III
+              </li>
+
+              <li>
+                Album of the Year —
+                Planet Her
+              </li>
+
+              <li>
+                Album of the Year —
+                World Music Radio
+              </li>
+
+              <li>
+                Best Rap Album —
+                Culture
+              </li>
+
+            </ul>
+
+            <div class="credential-watermark">
+              G
+            </div>
+
+          </article>
+
+
+          <!-- Diamond -->
+
+          <article class="credential-card medium reveal">
+
+            <div class="credential-top">
+              <span>Certified Success</span>
+              <span>Diamond</span>
+            </div>
+
+            <h3>
+              Diamond<br>
+              Record
+            </h3>
+
+            <ul class="credit-list">
+              <li>Sensualidad</li>
+            </ul>
+
+            <div class="credential-watermark">
+              ◆
+            </div>
+
+          </article>
+
+
+          <!-- Platinum Albums -->
+
+          <article class="credential-card half reveal">
+
+            <div class="credential-top">
+              <span>Certified Success</span>
+              <span>Platinum Albums</span>
+            </div>
+
+            <h3>
+              Platinum<br>
+              Albums
+            </h3>
+
+            <ul class="credit-list">
+
+              <li>Revenge of the Dreamers III</li>
+              <li>Planet Her</li>
+              <li>Mala Santa</li>
+              <li>Uno</li>
+              <li>CNCO</li>
+              <li>EMMANUEL</li>
+              <li>Culture</li>
+
+            </ul>
+
+            <div class="credential-watermark">
+              P
+            </div>
+
+          </article>
+
+
+          <!-- Platinum singles -->
+
+          <article class="credential-card half reveal">
+
+            <div class="credential-top">
+              <span>Certified Success</span>
+              <span>Platinum Singles</span>
+            </div>
+
+            <h3>
+              Platinum<br>
+              Singles
+            </h3>
+
+            <ul class="credit-list">
+
+              <li>Surround Sound</li>
+              <li>Costa Rica</li>
+              <li>Down Bad</li>
+              <li>BMO</li>
+              <li>Crushed Up</li>
+
+            </ul>
+
+            <div class="credential-watermark">
+              ×
+            </div>
+
+          </article>
+
+
+          <!-- Gold -->
+
+          <article class="credential-card large reveal">
+
+            <div class="credential-top">
+              <span>Certified Success</span>
+              <span>Gold Releases</span>
+            </div>
+
+            <h3>
+              Gold<br>
+              Releases
+            </h3>
+
+            <ul class="credit-list">
+
+              <li>The Forever Story</li>
+              <li>Signed To The Streets 3</li>
+              <li>Dance Now</li>
+              <li>Never</li>
+
+            </ul>
+
+            <div class="credential-watermark">
+              AU
+            </div>
+
+          </article>
+
+
+          <!-- Streams -->
+
+          <article class="credential-card medium reveal">
+
+            <div class="credential-top">
+              <span>Global Reach</span>
+              <span>Beyond Certifications</span>
+            </div>
+
+            <h3>
+              Billions<br>
+              Of Streams
+            </h3>
+
+            <p class="section-copy">
+              Additional work across our network has generated
+              billions of global streams beyond formal certifications.
+            </p>
+
+            <div class="credential-watermark">
+              ∞
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         LIVE / TOURING
+    ======================================================== -->
+
+    <section class="section touring" id="live">
+
+      <div class="container">
+
+        <div class="touring-title reveal">
+
+          <span class="section-number">
+            04 / Global Touring
+          </span>
+
+          <h2 class="section-title">
+            From Studios<br>
+            To Stadiums.
+          </h2>
+
+        </div>
+
+
+        <div class="artist-list">
+
+          <div class="artist-row reveal">
+            <span>Coldplay</span>
+            <span>Global Touring</span>
+          </div>
+
+          <div class="artist-row reveal">
+            <span>Halsey</span>
+            <span>Live Production</span>
+          </div>
+
+          <div class="artist-row reveal">
+            <span>Ayra Starr</span>
+            <span>Global Touring</span>
+          </div>
+
+          <div class="artist-row reveal">
+            <span>Dreamville Artists</span>
+            <span>Touring & Production</span>
+          </div>
+
+          <div class="artist-row reveal">
+            <span>YSL Records Artists</span>
+            <span>Live Production</span>
+          </div>
+
+          <div class="artist-row reveal">
+            <span>Elyanna</span>
+            <span>Global Touring</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FESTIVALS
+    ======================================================== -->
+
+    <section class="section festivals">
+
+      <div class="container">
+
+        <div class="festival-heading reveal">
+
+          <span class="section-number">
+            05 / Major Stages
+          </span>
+
+          <h2 class="section-title">
+            Global<br>
+            Stages.
+          </h2>
+
+        </div>
+
+
+        <div class="festival-grid reveal">
+
+          <div class="festival">
+            Coachella
+          </div>
+
+          <div class="festival">
+            Rolling Loud
+          </div>
+
+          <div class="festival">
+            Lollapalooza
+          </div>
+
+          <div class="festival">
+            Wireless Festival
+          </div>
+
+          <div class="festival">
+            Governors Ball
+          </div>
+
+          <div class="festival">
+            Outside Lands
+          </div>
+
+          <div class="festival">
+            Made In America
+          </div>
+
+          <div class="festival">
+            Formula 1
+          </div>
+
+          <div class="festival">
+            Global Citizen
+          </div>
+
+        </div>
+
+
+        <p class="festival-note reveal">
+          Large-scale productions across North America,
+          Europe, and the Middle East.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         BRAND PARTNERSHIPS
+    ======================================================== -->
+
+    <section class="section" id="brands">
+
+      <div class="container">
+
+        <div class="brands-heading">
+
+          <div class="reveal">
+
+            <span class="section-number">
+              06 / Partnerships
+            </span>
+
+            <h2 class="section-title">
+              Beyond<br>
+              Music.
+            </h2>
+
+          </div>
+
+
+          <p class="section-copy reveal">
+            Our extended network has contributed to campaigns
+            with major global brands and high-level marketing
+            and partnership opportunities.
+          </p>
+
+        </div>
+
+
+        <div class="brand-grid reveal">
+
+          <div class="brand-name">
+            Budweiser
+          </div>
+
+          <div class="brand-name">
+            DraftKings
+          </div>
+
+          <div class="brand-name">
+            Samsung
+          </div>
+
+          <div class="brand-name">
+            Apple
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         MANIFESTO
+    ======================================================== -->
+
+    <section class="manifesto">
+
+      <img
+        src="assets/images/logo.jpeg"
+        class="manifesto-logo"
+        alt=""
+      />
+
+      <div class="container reveal">
+
+        <span class="eyebrow">
+          The No Luck Model
+        </span>
+
+        <h2 style="margin-top: 30px;">
+          We don't build releases.
+          <span>We build artist ecosystems.</span>
+        </h2>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CONTACT
+    ======================================================== -->
+
+    <section class="section contact" id="contact">
+
+      <div class="container contact-inner reveal">
+
+        <img
+          src="assets/images/logo.jpeg"
+          alt="No Luck Enterprises"
+          class="contact-logo"
+        />
+
+        <span class="eyebrow">
+          No Luck Enterprises
+        </span>
+
+        <h2 style="margin-top: 26px;">
+          Build What's
+          <span>Next.</span>
+        </h2>
+
+        <p class="contact-copy">
+          Artist development. Strategic partnerships.
+          Global infrastructure. Long-term value.
+        </p>
+
+
+        <!--
+          IMPORTANT:
+          These buttons do not have emails attached yet.
+
+          Once you get the real company email,
+          I can make them clickable.
+        -->
+
+        <div class="contact-links">
+
+          <a href="#" class="contact-link">
+            Artist Inquiries
+          </a>
+
+          <a href="#" class="contact-link">
+            Partnerships
+          </a>
+
+          <a href="#" class="contact-link">
+            Business
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <span>
+        © <span id="year"></span> No Luck Enterprises
+      </span>
+
+      <span>
+        Creation · Marketing · Distribution · Monetization
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    /* YEAR */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* NAVBAR SCROLL */
+
+    const navbar =
+      document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 30) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* REVEAL ON SCROLL */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("show");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+    revealElements.forEach(element => {
+
+      revealObserver.observe(element);
+
+    });
+
+
+    /* MOBILE MENU */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const mobileNav =
+      document.getElementById("mobileNav");
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        mobileNav.classList.toggle("open");
+
+        document.body.classList.toggle(
+          "menu-open"
+        );
+
+      }
+    );
+
+
+    /* CLOSE MOBILE MENU
+       AFTER CLICKING A LINK
+    */
+
+    const mobileLinks =
+      mobileNav.querySelectorAll("a");
+
+    mobileLinks.forEach(link => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          mobileNav.classList.remove("open");
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+        }
+      );
+
+    });
+
+  </script>
+
+</body>
+</html>
