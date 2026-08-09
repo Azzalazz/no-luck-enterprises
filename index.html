@@ -12,15 +12,16 @@
   />
 
   <style>
+
     /* =========================================================
        NO LUCK ENTERPRISES
-       Black / Gold Entertainment Company Website
+       FINAL BLACK / GOLD WEBSITE
     ========================================================== */
 
     :root {
       --black: #050505;
-      --black-soft: #0a0a0a;
-      --black-card: #0e0e0e;
+      --black-soft: #090909;
+      --black-card: #0d0d0d;
 
       --white: #f5f1e8;
       --muted: #aaa69b;
@@ -49,12 +50,14 @@
     body {
       background: var(--black);
       color: var(--white);
+
       font-family:
         Inter,
         Helvetica Neue,
         Helvetica,
         Arial,
         sans-serif;
+
       overflow-x: hidden;
     }
 
@@ -82,6 +85,116 @@
     }
 
     /* =========================================================
+       LOADING SCREEN
+    ========================================================== */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+
+      background: var(--black);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 99999;
+
+      transition:
+        opacity .9s ease,
+        visibility .9s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      text-align: center;
+    }
+
+    .loader-logo {
+      width: 115px;
+      margin: 0 auto 28px;
+
+      opacity: 0;
+
+      animation:
+        loaderLogo 1.15s ease forwards;
+    }
+
+    .loader-line {
+      width: 0;
+      height: 1px;
+
+      background: var(--gold);
+
+      margin: 0 auto 21px;
+
+      animation:
+        loaderLine 1.05s .45s ease forwards;
+    }
+
+    .loader-name {
+      color: rgba(245,241,232,.82);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: .32em;
+      text-transform: uppercase;
+
+      opacity: 0;
+
+      animation:
+        loaderText .75s .9s ease forwards;
+    }
+
+    @keyframes loaderLogo {
+
+      from {
+        opacity: 0;
+        transform: scale(.82);
+        filter: blur(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+
+    }
+
+    @keyframes loaderLine {
+
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 130px;
+      }
+
+    }
+
+    @keyframes loaderText {
+
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    /* =========================================================
        GLOBAL
     ========================================================== */
 
@@ -97,32 +210,43 @@
 
     .section-number {
       display: inline-block;
+
       color: var(--gold);
+
       font-size: 11px;
       letter-spacing: .22em;
+
       margin-bottom: 22px;
+
       text-transform: uppercase;
     }
 
     .eyebrow {
       color: var(--gold);
+
       font-size: 11px;
       font-weight: 700;
+
       letter-spacing: .25em;
+
       text-transform: uppercase;
     }
 
     .section-title {
       font-size: clamp(42px, 7vw, 96px);
       font-weight: 700;
+
       line-height: .91;
       letter-spacing: -.055em;
+
       text-transform: uppercase;
     }
 
     .section-copy {
       color: var(--muted);
+
       line-height: 1.75;
+
       font-size: 16px;
     }
 
@@ -131,12 +255,14 @@
     }
 
     /* =========================================================
-       REVEAL ANIMATIONS
+       SCROLL REVEAL
     ========================================================== */
 
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
+
+      transform: translateY(38px);
+
       transition:
         opacity .85s cubic-bezier(.2,.7,.2,1),
         transform .85s cubic-bezier(.2,.7,.2,1);
@@ -153,12 +279,16 @@
 
     .navbar {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
+
       z-index: 1000;
 
       border-bottom: 1px solid transparent;
+
       transition:
         background .3s ease,
         backdrop-filter .3s ease,
@@ -167,13 +297,18 @@
 
     .navbar.scrolled {
       background: rgba(5,5,5,.86);
+
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
       border-bottom-color: var(--white-border);
     }
 
     .nav-inner {
       width: min(calc(100% - 48px), var(--max-width));
+
       height: 82px;
+
       margin: 0 auto;
 
       display: flex;
@@ -184,47 +319,63 @@
     .nav-brand {
       display: flex;
       align-items: center;
+
       gap: 12px;
     }
 
     .nav-logo {
       width: 34px;
       height: 34px;
+
       object-fit: contain;
     }
 
     .brand-text {
       font-size: 13px;
       font-weight: 800;
+
       letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
+
       gap: 34px;
+
       list-style: none;
     }
 
     .nav-links a {
       position: relative;
+
       color: rgba(245,241,232,.76);
+
       font-size: 11px;
       font-weight: 600;
+
       letter-spacing: .14em;
+
       text-transform: uppercase;
+
       transition: color .2s ease;
     }
 
     .nav-links a::after {
       content: "";
+
       position: absolute;
+
       left: 0;
       bottom: -8px;
+
       width: 0;
       height: 1px;
+
       background: var(--gold);
+
       transition: width .25s ease;
     }
 
@@ -238,18 +389,93 @@
 
     .menu-button {
       display: none;
+
       background: transparent;
       border: 0;
+
       color: var(--white);
+
       cursor: pointer;
+
+      position: relative;
+
+      z-index: 1001;
     }
 
     .menu-button span {
       display: block;
+
       width: 25px;
       height: 1px;
+
       background: currentColor;
+
       margin: 6px 0;
+
+      transition:
+        transform .3s ease,
+        opacity .3s ease;
+    }
+
+    .menu-button.active span:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .menu-button.active span:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       MOBILE NAV
+    ========================================================== */
+
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+
+      z-index: 999;
+
+      background: rgba(5,5,5,.985);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .35s ease,
+        visibility .35s ease;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    .mobile-nav li {
+      margin: 20px 0;
+    }
+
+    .mobile-nav a {
+      font-size: clamp(32px, 9vw, 58px);
+
+      text-transform: uppercase;
+
+      letter-spacing: -.04em;
+
+      transition: color .2s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--gold);
     }
 
     /* =========================================================
@@ -258,51 +484,100 @@
 
     .hero {
       min-height: 100vh;
+
       position: relative;
 
       display: flex;
       align-items: center;
 
       overflow: hidden;
+
       isolation: isolate;
     }
 
     .hero::before {
       content: "";
-      position: absolute;
-      width: 650px;
-      height: 650px;
-      border-radius: 50%;
 
-      top: 48%;
+      position: absolute;
+
+      width: 760px;
+      height: 760px;
+
+      top: 43%;
       left: 50%;
+
       transform: translate(-50%, -50%);
+
+      border-radius: 50%;
 
       background:
         radial-gradient(
           circle,
-          rgba(232,202,120,.10) 0%,
-          rgba(232,202,120,.045) 26%,
-          transparent 68%
+          rgba(232,202,120,.14) 0%,
+          rgba(232,202,120,.065) 22%,
+          rgba(232,202,120,.025) 43%,
+          transparent 69%
         );
 
-      filter: blur(20px);
+      filter: blur(25px);
+
+      animation:
+        heroGlow 7s ease-in-out infinite;
+
       z-index: -3;
+    }
+
+    @keyframes heroGlow {
+
+      0%,
+      100% {
+        transform:
+          translate(-50%, -50%)
+          scale(.95);
+
+        opacity: .65;
+      }
+
+      50% {
+        transform:
+          translate(-50%, -50%)
+          scale(1.08);
+
+        opacity: 1;
+      }
+
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
 
       background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
 
       background-size: 80px 80px;
 
       mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.55),
+          transparent 88%
+        );
+
+      -webkit-mask-image:
         linear-gradient(
           to bottom,
           rgba(0,0,0,.55),
@@ -314,6 +589,7 @@
 
     .hero-inner {
       width: min(calc(100% - 48px), var(--max-width));
+
       margin: 0 auto;
 
       padding-top: 125px;
@@ -323,6 +599,7 @@
 
       display: flex;
       flex-direction: column;
+
       align-items: center;
     }
 
@@ -333,16 +610,30 @@
 
       margin-bottom: 28px;
 
-      animation: logoFloat 5s ease-in-out infinite;
+      --mx: 0px;
+      --my: 0px;
+
+      transform:
+        translate(
+          var(--mx),
+          var(--my)
+        );
+
+      transition:
+        transform .35s cubic-bezier(.2,.8,.2,1);
     }
 
     .hero-logo-wrap::before {
       content: "";
+
       position: absolute;
+
       inset: 13%;
 
       background: rgba(232,202,120,.16);
+
       filter: blur(42px);
+
       border-radius: 50%;
 
       z-index: -1;
@@ -350,34 +641,56 @@
 
     .hero-logo {
       width: 100%;
+
       filter:
-        drop-shadow(0 0 16px rgba(232,202,120,.10))
-        drop-shadow(0 20px 40px rgba(0,0,0,.55));
+        drop-shadow(
+          0 0 16px
+          rgba(232,202,120,.10)
+        )
+        drop-shadow(
+          0 20px 40px
+          rgba(0,0,0,.55)
+        );
+
+      animation:
+        logoFloat 5s ease-in-out infinite;
     }
 
     @keyframes logoFloat {
-      0%,100% {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-8px);
       }
+
     }
 
     .hero-kicker {
       color: var(--gold);
+
       font-size: 11px;
       font-weight: 700;
+
       letter-spacing: .32em;
+
       text-transform: uppercase;
+
       margin-bottom: 22px;
     }
 
     .hero-title {
       font-size: clamp(58px, 10.4vw, 154px);
+
       line-height: .76;
+
       letter-spacing: -.075em;
+
       text-transform: uppercase;
+
       font-weight: 700;
     }
 
@@ -387,33 +700,47 @@
 
     .hero-title .outlined {
       color: transparent;
-      -webkit-text-stroke: 1px rgba(232,202,120,.75);
-      text-stroke: 1px rgba(232,202,120,.75);
+
+      -webkit-text-stroke:
+        1px rgba(232,202,120,.75);
     }
 
     .hero-tagline {
       max-width: 670px;
+
       margin-top: 43px;
 
-      font-family: Georgia, Times New Roman, serif;
-      font-size: clamp(19px, 2vw, 29px);
+      font-family:
+        Georgia,
+        Times New Roman,
+        serif;
+
+      font-size:
+        clamp(19px, 2vw, 29px);
+
       line-height: 1.35;
 
-      color: rgba(245,241,232,.92);
+      color:
+        rgba(245,241,232,.92);
     }
 
     .hero-description {
       max-width: 600px;
+
       margin-top: 18px;
 
       font-size: 14px;
+
       line-height: 1.7;
+
       color: var(--muted);
     }
 
     .hero-button {
       display: inline-flex;
+
       align-items: center;
+
       gap: 18px;
 
       margin-top: 38px;
@@ -421,35 +748,50 @@
       padding: 14px 0;
 
       color: var(--white);
+
       font-size: 11px;
       font-weight: 700;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
 
-      border-bottom: 1px solid var(--gold);
+      border-bottom:
+        1px solid var(--gold);
     }
 
     .hero-button span:last-child {
-      transition: transform .2s ease;
+      transition:
+        transform .2s ease;
     }
 
     .hero-button:hover span:last-child {
-      transform: translateY(4px);
+      transform:
+        translateY(4px);
     }
 
     .hero-bottom {
       position: absolute;
+
       bottom: 27px;
 
-      width: min(calc(100% - 48px), var(--max-width));
+      width:
+        min(
+          calc(100% - 48px),
+          var(--max-width)
+        );
 
       display: flex;
+
       justify-content: space-between;
 
-      color: rgba(255,255,255,.36);
+      color:
+        rgba(255,255,255,.36);
 
       font-size: 9px;
+
       letter-spacing: .18em;
+
       text-transform: uppercase;
     }
 
@@ -458,9 +800,14 @@
     ========================================================== */
 
     .marquee-section {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
       overflow: hidden;
+
       background: #090806;
     }
 
@@ -468,11 +815,13 @@
       width: max-content;
 
       display: flex;
+
       gap: 40px;
 
       padding: 25px 0;
 
-      animation: marquee 27s linear infinite;
+      animation:
+        marquee 27s linear infinite;
     }
 
     .marquee span {
@@ -480,9 +829,13 @@
 
       color: var(--gold);
 
-      font-size: clamp(22px, 3vw, 42px);
+      font-size:
+        clamp(22px, 3vw, 42px);
+
       font-weight: 600;
+
       letter-spacing: -.03em;
+
       text-transform: uppercase;
     }
 
@@ -491,6 +844,7 @@
     }
 
     @keyframes marquee {
+
       from {
         transform: translateX(0);
       }
@@ -498,6 +852,7 @@
       to {
         transform: translateX(-50%);
       }
+
     }
 
     /* =========================================================
@@ -506,8 +861,12 @@
 
     .about-layout {
       display: grid;
-      grid-template-columns: .7fr 1.3fr;
+
+      grid-template-columns:
+        .7fr 1.3fr;
+
       gap: 80px;
+
       align-items: start;
     }
 
@@ -517,10 +876,16 @@
     }
 
     .about-big {
-      font-family: Georgia, Times New Roman, serif;
+      font-family:
+        Georgia,
+        Times New Roman,
+        serif;
 
-      font-size: clamp(33px, 4.6vw, 66px);
+      font-size:
+        clamp(33px, 4.6vw, 66px);
+
       line-height: 1.06;
+
       letter-spacing: -.035em;
 
       margin-bottom: 45px;
@@ -528,13 +893,18 @@
 
     .about-text-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 34px;
     }
 
     .about-text-grid p {
       color: var(--muted);
+
       font-size: 15px;
+
       line-height: 1.8;
     }
 
@@ -544,34 +914,51 @@
 
     .value-chain {
       padding: 90px 0;
-      border-top: 1px solid var(--white-border);
-      border-bottom: 1px solid var(--white-border);
+
+      border-top:
+        1px solid var(--white-border);
+
+      border-bottom:
+        1px solid var(--white-border);
     }
 
     .chain-title {
       color: var(--muted);
+
       font-size: 10px;
+
       letter-spacing: .24em;
+
       text-transform: uppercase;
+
       margin-bottom: 44px;
     }
 
     .chain-grid {
       display: grid;
-      grid-template-columns: repeat(7, auto);
+
+      grid-template-columns:
+        repeat(7, auto);
+
       align-items: center;
+
       gap: 24px;
     }
 
     .chain-item {
-      font-size: clamp(21px, 2.8vw, 39px);
+      font-size:
+        clamp(21px, 2.8vw, 39px);
+
       font-weight: 600;
+
       letter-spacing: -.04em;
+
       text-transform: uppercase;
     }
 
     .chain-arrow {
       color: var(--gold);
+
       font-size: 25px;
     }
 
@@ -581,9 +968,13 @@
 
     .capabilities-header {
       display: flex;
+
       justify-content: space-between;
+
       align-items: end;
+
       gap: 50px;
+
       margin-bottom: 65px;
     }
 
@@ -592,21 +983,26 @@
     }
 
     .cap-list {
-      border-top: 1px solid var(--white-border);
+      border-top:
+        1px solid var(--white-border);
     }
 
     .cap-row {
       position: relative;
 
       display: grid;
-      grid-template-columns: 90px 1fr 1fr 50px;
+
+      grid-template-columns:
+        90px 1fr 1fr 50px;
 
       gap: 25px;
+
       align-items: center;
 
       min-height: 130px;
 
-      border-bottom: 1px solid var(--white-border);
+      border-bottom:
+        1px solid var(--white-border);
 
       overflow: hidden;
 
@@ -617,6 +1013,7 @@
 
     .cap-row::before {
       content: "";
+
       position: absolute;
 
       left: 0;
@@ -632,7 +1029,8 @@
           transparent
         );
 
-      transition: width .45s ease;
+      transition:
+        width .45s ease;
     }
 
     .cap-row:hover::before {
@@ -644,33 +1042,57 @@
     }
 
     .cap-number {
+      position: relative;
+
       color: var(--gold);
+
       font-size: 11px;
+
       letter-spacing: .17em;
     }
 
     .cap-name {
       position: relative;
 
-      font-size: clamp(23px, 3vw, 46px);
+      font-size:
+        clamp(23px, 3vw, 46px);
+
       font-weight: 600;
+
       letter-spacing: -.035em;
+
       text-transform: uppercase;
     }
 
     .cap-desc {
       position: relative;
+
       color: var(--muted);
+
       line-height: 1.6;
+
       font-size: 13px;
+
       max-width: 400px;
     }
 
     .cap-plus {
       position: relative;
+
       color: var(--gold);
+
       font-size: 22px;
+
       text-align: right;
+
+      transition:
+        transform .35s ease,
+        color .35s ease;
+    }
+
+    .cap-row:hover .cap-plus {
+      transform: rotate(90deg);
+      color: #fff;
     }
 
     /* =========================================================
@@ -689,9 +1111,14 @@
 
     .credentials-intro {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+
+      grid-template-columns:
+        1.15fr .85fr;
+
       gap: 80px;
+
       align-items: end;
+
       margin-bottom: 85px;
     }
 
@@ -701,20 +1128,27 @@
 
     .credential-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+
+      grid-template-columns:
+        repeat(12, 1fr);
+
       gap: 18px;
     }
 
     .credential-card {
       position: relative;
+
       overflow: hidden;
 
       padding: 32px;
 
       min-height: 310px;
 
-      border: 1px solid var(--white-border);
-      background: rgba(255,255,255,.018);
+      border:
+        1px solid var(--white-border);
+
+      background:
+        rgba(255,255,255,.018);
 
       transition:
         transform .3s ease,
@@ -723,9 +1157,48 @@
     }
 
     .credential-card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(232,202,120,.4);
-      background: rgba(232,202,120,.035);
+      transform:
+        translateY(-7px);
+
+      border-color:
+        rgba(232,202,120,.4);
+
+      background:
+        rgba(232,202,120,.035);
+    }
+
+    .credential-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      right: -180px;
+      top: -180px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(232,202,120,.14),
+          transparent 65%
+        );
+
+      opacity: 0;
+
+      transition:
+        opacity .45s ease,
+        transform .6s ease;
+
+      pointer-events: none;
+    }
+
+    .credential-card:hover::after {
+      opacity: 1;
+      transform: scale(1.5);
     }
 
     .credential-card.large {
@@ -742,48 +1215,84 @@
 
     .credential-top {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
       margin-bottom: 48px;
 
       color: var(--gold);
+
       font-size: 10px;
+
       letter-spacing: .22em;
+
       text-transform: uppercase;
     }
 
     .credential-card h3 {
-      font-size: clamp(29px, 4vw, 58px);
+      position: relative;
+
+      z-index: 2;
+
+      font-size:
+        clamp(29px, 4vw, 58px);
+
       line-height: .97;
+
       letter-spacing: -.045em;
+
       text-transform: uppercase;
+
       margin-bottom: 27px;
+
+      transition:
+        color .3s ease,
+        transform .3s ease;
+    }
+
+    .credential-card:hover h3 {
+      color: var(--gold);
+
+      transform:
+        translateY(-3px);
     }
 
     .credit-list {
+      position: relative;
+
+      z-index: 2;
+
       list-style: none;
+
       display: grid;
+
       gap: 10px;
     }
 
     .credit-list li {
       color: var(--muted);
+
       font-size: 13px;
+
       line-height: 1.45;
     }
 
     .credential-watermark {
       position: absolute;
+
       right: -8px;
       bottom: -30px;
 
       font-size: 130px;
       font-weight: 800;
 
-      color: rgba(232,202,120,.028);
+      color:
+        rgba(232,202,120,.028);
 
       pointer-events: none;
+
       user-select: none;
     }
 
@@ -793,12 +1302,15 @@
 
     .touring {
       position: relative;
+
       overflow: hidden;
     }
 
     .touring::before {
       content: "";
+
       position: absolute;
+
       inset: 0;
 
       background:
@@ -811,44 +1323,128 @@
       pointer-events: none;
     }
 
+    .touring-word {
+      position: absolute;
+
+      right: -3vw;
+      top: 40px;
+
+      font-size:
+        clamp(180px, 31vw, 520px);
+
+      font-weight: 800;
+
+      line-height: .8;
+
+      letter-spacing: -.08em;
+
+      color: transparent;
+
+      -webkit-text-stroke:
+        1px rgba(232,202,120,.055);
+
+      pointer-events: none;
+
+      user-select: none;
+    }
+
     .touring-title {
+      position: relative;
+
+      z-index: 2;
+
       margin-bottom: 80px;
     }
 
     .artist-list {
-      border-top: 1px solid var(--white-border);
+      position: relative;
+
+      z-index: 2;
+
+      border-top:
+        1px solid var(--white-border);
     }
 
     .artist-row {
+      position: relative;
+
+      overflow: hidden;
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
       padding: 23px 0;
 
-      border-bottom: 1px solid var(--white-border);
+      border-bottom:
+        1px solid var(--white-border);
+    }
+
+    .artist-row::before {
+      content: "";
+
+      position: absolute;
+
+      left: -100%;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(232,202,120,.07),
+          transparent
+        );
+
+      transition:
+        left .6s ease;
+
+      pointer-events: none;
+    }
+
+    .artist-row:hover::before {
+      left: 100%;
     }
 
     .artist-row span:first-child {
-      font-size: clamp(26px, 4vw, 55px);
+      position: relative;
+
+      font-size:
+        clamp(26px, 4vw, 55px);
+
       font-weight: 600;
+
       letter-spacing: -.045em;
+
       text-transform: uppercase;
+
       transition:
         transform .25s ease,
         color .25s ease;
     }
 
     .artist-row span:last-child {
+      position: relative;
+
       color: var(--muted);
+
       font-size: 9px;
+
       letter-spacing: .21em;
+
       text-transform: uppercase;
     }
 
     .artist-row:hover span:first-child {
       color: var(--gold);
-      transform: translateX(13px);
+
+      transform:
+        translateX(13px);
     }
 
     /* =========================================================
@@ -857,6 +1453,7 @@
 
     .festivals {
       background: var(--gold);
+
       color: #090909;
     }
 
@@ -871,26 +1468,39 @@
 
     .festival-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
 
-      border-top: 1px solid rgba(0,0,0,.25);
-      border-left: 1px solid rgba(0,0,0,.25);
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      border-top:
+        1px solid rgba(0,0,0,.25);
+
+      border-left:
+        1px solid rgba(0,0,0,.25);
     }
 
     .festival {
       min-height: 160px;
 
       display: flex;
+
       align-items: flex-end;
 
       padding: 25px;
 
-      border-right: 1px solid rgba(0,0,0,.25);
-      border-bottom: 1px solid rgba(0,0,0,.25);
+      border-right:
+        1px solid rgba(0,0,0,.25);
 
-      font-size: clamp(18px, 2.4vw, 30px);
+      border-bottom:
+        1px solid rgba(0,0,0,.25);
+
+      font-size:
+        clamp(18px, 2.4vw, 30px);
+
       font-weight: 700;
+
       letter-spacing: -.035em;
+
       text-transform: uppercase;
 
       transition:
@@ -900,6 +1510,7 @@
 
     .festival:hover {
       background: #090909;
+
       color: var(--gold);
     }
 
@@ -908,8 +1519,13 @@
 
       margin-top: 45px;
 
-      font-family: Georgia, Times New Roman, serif;
+      font-family:
+        Georgia,
+        Times New Roman,
+        serif;
+
       font-size: 22px;
+
       line-height: 1.45;
     }
 
@@ -919,73 +1535,99 @@
 
     .brands-heading {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 70px;
+
       align-items: end;
+
       margin-bottom: 75px;
     }
 
     .brands-heading p {
       max-width: 480px;
+
       justify-self: end;
     }
 
     .brand-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
 
-      border-top: 1px solid var(--white-border);
-      border-left: 1px solid var(--white-border);
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border-top:
+        1px solid var(--white-border);
+
+      border-left:
+        1px solid var(--white-border);
     }
 
     .brand-name {
       min-height: 190px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
-      border-right: 1px solid var(--white-border);
-      border-bottom: 1px solid var(--white-border);
+      border-right:
+        1px solid var(--white-border);
 
-      font-size: clamp(18px, 2.2vw, 30px);
+      border-bottom:
+        1px solid var(--white-border);
+
+      font-size:
+        clamp(18px, 2.2vw, 30px);
+
       font-weight: 700;
+
       letter-spacing: -.025em;
+
       text-transform: uppercase;
 
       transition:
         background .3s ease,
-        color .3s ease;
+        color .3s ease,
+        transform .3s ease;
     }
 
     .brand-name:hover {
       background: var(--white);
+
       color: var(--black);
     }
 
     /* =========================================================
-       MANIFESTO / QUOTE
+       MANIFESTO
     ========================================================== */
 
     .manifesto {
       padding: 165px 0;
+
       text-align: center;
 
-      border-top: 1px solid var(--white-border);
+      border-top:
+        1px solid var(--white-border);
 
       position: relative;
+
       overflow: hidden;
     }
 
     .manifesto-logo {
       position: absolute;
 
-      width: min(620px, 70vw);
+      width:
+        min(620px, 70vw);
 
       left: 50%;
       top: 50%;
 
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
 
       opacity: .028;
 
@@ -996,17 +1638,96 @@
       position: relative;
 
       max-width: 1050px;
+
       margin: 0 auto;
 
-      font-family: Georgia, Times New Roman, serif;
+      font-family:
+        Georgia,
+        Times New Roman,
+        serif;
 
-      font-size: clamp(42px, 7.2vw, 102px);
+      font-size:
+        clamp(42px, 7.2vw, 102px);
+
       line-height: .98;
+
       letter-spacing: -.048em;
     }
 
     .manifesto h2 span {
       color: var(--gold);
+    }
+
+    /* =========================================================
+       GIANT MOVING STATEMENT
+    ========================================================== */
+
+    .noluck-statement {
+      overflow: hidden;
+
+      padding: 55px 0;
+
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
+      background: #090806;
+    }
+
+    .statement-track {
+      width: max-content;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 45px;
+
+      animation:
+        statementMove 32s linear infinite;
+    }
+
+    .statement-track span {
+      white-space: nowrap;
+
+      font-size:
+        clamp(52px, 9vw, 130px);
+
+      font-weight: 700;
+
+      line-height: .9;
+
+      letter-spacing: -.055em;
+
+      text-transform: uppercase;
+
+      color: transparent;
+
+      -webkit-text-stroke:
+        1px rgba(232,202,120,.75);
+    }
+
+    .statement-track .statement-star {
+      color: var(--gold);
+
+      -webkit-text-stroke: 0;
+
+      font-size:
+        clamp(28px, 5vw, 70px);
+    }
+
+    @keyframes statementMove {
+
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+
     }
 
     /* =========================================================
@@ -1017,9 +1738,11 @@
       min-height: 76vh;
 
       display: flex;
+
       align-items: center;
 
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
 
       background:
         radial-gradient(
@@ -1035,33 +1758,44 @@
 
     .contact-logo {
       width: 80px;
+
       margin: 0 auto 28px;
     }
 
     .contact h2 {
-      font-size: clamp(53px, 9.5vw, 138px);
+      font-size:
+        clamp(53px, 9.5vw, 138px);
+
       line-height: .78;
+
       letter-spacing: -.072em;
+
       text-transform: uppercase;
     }
 
     .contact h2 span {
       display: block;
+
       color: var(--gold);
     }
 
     .contact-copy {
       max-width: 540px;
+
       margin: 42px auto 0;
 
       color: var(--muted);
+
       line-height: 1.75;
     }
 
     .contact-links {
       display: flex;
+
       justify-content: center;
+
       flex-wrap: wrap;
+
       gap: 12px;
 
       margin-top: 36px;
@@ -1070,23 +1804,31 @@
     .contact-link {
       padding: 14px 21px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       font-size: 10px;
       font-weight: 700;
+
       letter-spacing: .17em;
+
       text-transform: uppercase;
 
       transition:
         background .25s ease,
         color .25s ease,
-        border-color .25s ease;
+        border-color .25s ease,
+        transform .25s ease;
     }
 
     .contact-link:hover {
       background: var(--gold);
+
       color: var(--black);
+
       border-color: var(--gold);
+
+      transform: translateY(-3px);
     }
 
     /* =========================================================
@@ -1094,61 +1836,27 @@
     ========================================================== */
 
     footer {
-      border-top: 1px solid var(--white-border);
+      border-top:
+        1px solid var(--white-border);
+
       padding: 30px 0;
     }
 
     .footer-inner {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
-      color: rgba(255,255,255,.37);
+      color:
+        rgba(255,255,255,.37);
 
       font-size: 9px;
+
       letter-spacing: .17em;
+
       text-transform: uppercase;
-    }
-
-    /* =========================================================
-       MOBILE MENU
-    ========================================================== */
-
-    .mobile-nav {
-      position: fixed;
-      inset: 0;
-
-      z-index: 999;
-
-      background: rgba(5,5,5,.98);
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-nav.open {
-      display: flex;
-    }
-
-    .mobile-nav ul {
-      list-style: none;
-      text-align: center;
-    }
-
-    .mobile-nav li {
-      margin: 20px 0;
-    }
-
-    .mobile-nav a {
-      font-size: clamp(32px, 9vw, 58px);
-      text-transform: uppercase;
-      letter-spacing: -.04em;
-    }
-
-    .mobile-nav a:hover {
-      color: var(--gold);
     }
 
     /* =========================================================
@@ -1167,6 +1875,7 @@
 
       .about-layout {
         grid-template-columns: 1fr;
+
         gap: 45px;
       }
 
@@ -1180,21 +1889,26 @@
 
       .chain-arrow {
         transform: rotate(90deg);
+
         width: fit-content;
       }
 
       .capabilities-header {
         flex-direction: column;
+
         align-items: flex-start;
       }
 
       .cap-row {
-        grid-template-columns: 52px 1fr 45px;
+        grid-template-columns:
+          52px 1fr 45px;
+
         padding: 25px 0;
       }
 
       .cap-desc {
         grid-column: 2 / 4;
+
         padding-bottom: 8px;
       }
 
@@ -1206,11 +1920,13 @@
 
       .credentials-intro {
         grid-template-columns: 1fr;
+
         gap: 35px;
       }
 
       .festival-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .brands-heading {
@@ -1222,8 +1938,10 @@
       }
 
       .brand-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 640px) {
@@ -1232,7 +1950,11 @@
       .nav-inner,
       .hero-inner,
       .hero-bottom {
-        width: min(calc(100% - 32px), var(--max-width));
+        width:
+          min(
+            calc(100% - 32px),
+            var(--max-width)
+          );
       }
 
       .section {
@@ -1244,7 +1966,7 @@
       }
 
       .brand-text {
-        font-size: 11px;
+        font-size: 10px;
       }
 
       .hero-inner {
@@ -1253,6 +1975,11 @@
 
       .hero-title {
         line-height: .82;
+      }
+
+      .hero-kicker {
+        font-size: 9px;
+        line-height: 1.7;
       }
 
       .hero-tagline {
@@ -1289,130 +2016,302 @@
 
       .artist-row {
         align-items: flex-end;
+
+        gap: 20px;
       }
 
       .artist-row span:last-child {
-        max-width: 95px;
+        max-width: 100px;
+
         text-align: right;
       }
 
       .footer-inner {
         flex-direction: column;
+
         gap: 10px;
+
         text-align: center;
       }
 
       .contact {
         min-height: 68vh;
       }
+
+      .touring-word {
+        top: 100px;
+
+        opacity: .7;
+      }
+
     }
+
+    /* =========================================================
+       REDUCED MOTION ACCESSIBILITY
+    ========================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body id="top">
+
+
+  <!-- =======================================================
+       LOADING SCREEN
+  ======================================================== -->
+
+  <div class="loader" id="loader">
+
+    <div class="loader-inner">
+
+      <img
+        src="assets/images/logo.jpeg"
+        alt="No Luck Enterprises"
+        class="loader-logo"
+      />
+
+      <div class="loader-line"></div>
+
+      <p class="loader-name">
+        No Luck Enterprises
+      </p>
+
+    </div>
+
+  </div>
+
 
   <!-- =======================================================
        NAVIGATION
   ======================================================== -->
 
   <header class="navbar" id="navbar">
+
     <div class="nav-inner">
 
       <a href="#top" class="nav-brand">
+
         <img
           src="assets/images/logo.jpeg"
           alt="No Luck Enterprises logo"
           class="nav-logo"
         />
-        <span class="brand-text">No Luck Enterprises</span>
+
+        <span class="brand-text">
+          No Luck Enterprises
+        </span>
+
       </a>
 
+
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#credentials">Credentials</a></li>
-        <li><a href="#live">Live</a></li>
-        <li><a href="#brands">Partnerships</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+        <li>
+          <a href="#about">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a href="#capabilities">
+            Capabilities
+          </a>
+        </li>
+
+        <li>
+          <a href="#credentials">
+            Credentials
+          </a>
+        </li>
+
+        <li>
+          <a href="#live">
+            Live
+          </a>
+        </li>
+
+        <li>
+          <a href="#brands">
+            Partnerships
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            Contact
+          </a>
+        </li>
+
       </ul>
 
-      <button class="menu-button" id="menuButton" aria-label="Open menu">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+
         <span></span>
         <span></span>
+
       </button>
 
     </div>
+
   </header>
 
 
-  <!-- MOBILE MENU -->
+  <!-- =======================================================
+       MOBILE MENU
+  ======================================================== -->
 
   <div class="mobile-nav" id="mobileNav">
+
     <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-      <li><a href="#live">Live</a></li>
-      <li><a href="#brands">Partnerships</a></li>
-      <li><a href="#contact">Contact</a></li>
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#capabilities">Capabilities</a>
+      </li>
+
+      <li>
+        <a href="#credentials">Credentials</a>
+      </li>
+
+      <li>
+        <a href="#live">Live</a>
+      </li>
+
+      <li>
+        <a href="#brands">Partnerships</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+
     </ul>
+
   </div>
 
 
-  <!-- =======================================================
-       HERO
-  ======================================================== -->
-
   <main>
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
 
     <section class="hero">
 
       <div class="hero-inner">
 
-        <div class="hero-logo-wrap">
+        <div
+          class="hero-logo-wrap"
+          id="heroLogo"
+        >
+
           <img
             src="assets/images/logo.jpeg"
             alt="No Luck Enterprises"
             class="hero-logo"
           />
+
         </div>
+
 
         <div class="hero-kicker">
+
           Global Music · Entertainment · Artist Infrastructure
+
         </div>
 
+
         <h1 class="hero-title">
-          <span>No Luck</span>
-          <span class="outlined">Enterprises</span>
+
+          <span>
+            No Luck
+          </span>
+
+          <span class="outlined">
+            Enterprises
+          </span>
+
         </h1>
 
+
         <p class="hero-tagline">
+
           Building artists beyond the release.
+
         </p>
+
 
         <p class="hero-description">
-          A vertically integrated global music company built to operate
-          across the entire lifecycle of an artist's career —
-          from creation to global scale.
+
+          A vertically integrated global music company
+          built to operate across the entire lifecycle
+          of an artist's career — from creation to global scale.
+
         </p>
 
-        <a href="#about" class="hero-button">
-          <span>Explore</span>
-          <span>↓</span>
+
+        <a
+          href="#about"
+          class="hero-button"
+        >
+
+          <span>
+            Explore
+          </span>
+
+          <span>
+            ↓
+          </span>
+
         </a>
 
       </div>
 
+
       <div class="hero-bottom">
-        <span>Music Without Fragmentation</span>
-        <span>Creation → Global Scale</span>
+
+        <span>
+          Music Without Fragmentation
+        </span>
+
+        <span>
+          Creation → Global Scale
+        </span>
+
       </div>
 
     </section>
 
 
     <!-- =======================================================
-         MARQUEE
+         MOVING VALUE MARQUEE
     ======================================================== -->
 
     <div class="marquee-section">
@@ -1421,19 +2320,25 @@
 
         <span>Creation</span>
         <span class="star">✦</span>
+
         <span>Marketing</span>
         <span class="star">✦</span>
+
         <span>Distribution</span>
         <span class="star">✦</span>
+
         <span>Monetization</span>
         <span class="star">✦</span>
 
         <span>Creation</span>
         <span class="star">✦</span>
+
         <span>Marketing</span>
         <span class="star">✦</span>
+
         <span>Distribution</span>
         <span class="star">✦</span>
+
         <span>Monetization</span>
         <span class="star">✦</span>
 
@@ -1446,52 +2351,81 @@
          ABOUT
     ======================================================== -->
 
-    <section class="section" id="about">
+    <section
+      class="section"
+      id="about"
+    >
 
       <div class="container">
 
         <div class="about-layout">
 
+
           <div class="about-label reveal">
-            <span class="section-number">01 / About</span>
+
+            <span class="section-number">
+
+              01 / About
+
+            </span>
+
 
             <h2 class="section-title">
+
               One<br>
               System.
+
             </h2>
+
           </div>
 
 
           <div>
 
             <p class="about-big reveal">
+
               No Luck Enterprises is
-              <span class="gold">not a traditional production company.</span>
+              <span class="gold">
+                not a traditional production company.
+              </span>
+
             </p>
+
 
             <div class="about-text-grid reveal">
 
               <p>
-                We are a vertically integrated global music company built
-                to operate across the entire lifecycle of an artist's career —
-                from creation to global scale.
+
+                We are a vertically integrated global music company
+                built to operate across the entire lifecycle of an
+                artist's career — from creation to global scale.
+
               </p>
 
-              <p>
-                Our model is designed to eliminate fragmentation in the music
-                industry by bringing production, marketing, distribution,
-                and monetization under one unified system.
-              </p>
 
               <p>
-                Through high-level creative execution, strategic partnerships,
-                and scalable digital infrastructure, we position artists
-                to compete on a global level.
+
+                Our model is designed to eliminate fragmentation in
+                the music industry by bringing production, marketing,
+                distribution, and monetization under one unified system.
+
               </p>
 
+
               <p>
+
+                Through high-level creative execution, strategic
+                partnerships, and scalable digital infrastructure,
+                we position artists to compete on a global level.
+
+              </p>
+
+
+              <p>
+
                 We focus on building long-term artist value —
                 not one-off releases.
+
               </p>
 
             </div>
@@ -1513,22 +2447,46 @@
 
       <div class="container">
 
+
         <p class="chain-title reveal">
+
           The Full Value Chain
+
         </p>
+
 
         <div class="chain-grid reveal">
 
-          <span class="chain-item">Creation</span>
-          <span class="chain-arrow">→</span>
+          <span class="chain-item">
+            Creation
+          </span>
 
-          <span class="chain-item">Marketing</span>
-          <span class="chain-arrow">→</span>
+          <span class="chain-arrow">
+            →
+          </span>
 
-          <span class="chain-item">Distribution</span>
-          <span class="chain-arrow">→</span>
 
-          <span class="chain-item">Monetization</span>
+          <span class="chain-item">
+            Marketing
+          </span>
+
+          <span class="chain-arrow">
+            →
+          </span>
+
+
+          <span class="chain-item">
+            Distribution
+          </span>
+
+          <span class="chain-arrow">
+            →
+          </span>
+
+
+          <span class="chain-item">
+            Monetization
+          </span>
 
         </div>
 
@@ -1541,30 +2499,42 @@
          CAPABILITIES
     ======================================================== -->
 
-    <section class="section" id="capabilities">
+    <section
+      class="section"
+      id="capabilities"
+    >
 
       <div class="container">
 
+
         <div class="capabilities-header">
+
 
           <div class="reveal">
 
             <span class="section-number">
+
               02 / Capabilities
+
             </span>
 
+
             <h2 class="section-title">
+
               Built For<br>
               Scale.
+
             </h2>
 
           </div>
 
 
           <p class="section-copy reveal">
-            An integrated creative and commercial infrastructure designed
-            to develop artists, scale audiences, strengthen ownership,
-            and create long-term global value.
+
+            An integrated creative and commercial infrastructure
+            designed to develop artists, scale audiences,
+            strengthen ownership, and create long-term global value.
+
           </p>
 
         </div>
@@ -1572,110 +2542,147 @@
 
         <div class="cap-list">
 
+
           <div class="cap-row reveal">
 
-            <span class="cap-number">01</span>
+            <span class="cap-number">
+              01
+            </span>
 
             <span class="cap-name">
               Music Production
             </span>
 
             <span class="cap-desc">
-              A-list music production, engineering,
-              and visual content systems.
+
+              A-list music production,
+              engineering, and visual content systems.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
 
           <div class="cap-row reveal">
 
-            <span class="cap-number">02</span>
+            <span class="cap-number">
+              02
+            </span>
 
             <span class="cap-name">
               Global Marketing
             </span>
 
             <span class="cap-desc">
-              Major-label marketing, PR,
-              and global distribution partnerships.
+
+              Major-label marketing,
+              PR, and global distribution partnerships.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
 
           <div class="cap-row reveal">
 
-            <span class="cap-number">03</span>
+            <span class="cap-number">
+              03
+            </span>
 
             <span class="cap-name">
               Digital Growth
             </span>
 
             <span class="cap-desc">
+
               Scalable social and content growth
               infrastructure built for audience expansion.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
 
           <div class="cap-row reveal">
 
-            <span class="cap-number">04</span>
+            <span class="cap-number">
+              04
+            </span>
 
             <span class="cap-name">
               Artist IP
             </span>
 
             <span class="cap-desc">
+
               Intellectual property development,
               ownership strategy, and long-term positioning.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
 
           <div class="cap-row reveal">
 
-            <span class="cap-number">05</span>
+            <span class="cap-number">
+              05
+            </span>
 
             <span class="cap-name">
               Live & Touring
             </span>
 
             <span class="cap-desc">
-              Touring, live events,
-              festivals, and large-scale production integration.
+
+              Touring, live events, festivals,
+              and large-scale production integration.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
 
           <div class="cap-row reveal">
 
-            <span class="cap-number">06</span>
+            <span class="cap-number">
+              06
+            </span>
 
             <span class="cap-name">
               Monetization
             </span>
 
             <span class="cap-desc">
+
               Long-term artist ecosystem monetization
               beyond individual releases.
+
             </span>
 
-            <span class="cap-plus">＋</span>
+            <span class="cap-plus">
+              ＋
+            </span>
 
           </div>
 
@@ -1690,30 +2697,48 @@
          CREDENTIALS
     ======================================================== -->
 
-    <section class="section credentials" id="credentials">
+    <section
+      class="section credentials"
+      id="credentials"
+    >
 
       <div class="container">
 
+
         <div class="credentials-intro">
+
 
           <div class="reveal">
 
             <span class="section-number">
+
               03 / Credentials
+
             </span>
 
+
             <h2 class="section-title">
+
               Proven<br>
               At Scale.
+
             </h2>
 
           </div>
 
 
-          <p class="section-copy credential-description reveal">
-            Our team brings together experience across award-nominated
-            projects, multi-platinum releases, global touring,
-            and major brand partnerships.
+          <p
+            class="
+              section-copy
+              credential-description
+              reveal
+            "
+          >
+
+            Our team brings together experience across
+            award-nominated projects, multi-platinum releases,
+            global touring, and major brand partnerships.
+
           </p>
 
         </div>
@@ -1721,19 +2746,37 @@
 
         <div class="credential-grid">
 
-          <!-- Grammy -->
 
-          <article class="credential-card large reveal">
+          <!-- GRAMMY -->
+
+          <article
+            class="
+              credential-card
+              large
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Award Recognition</span>
-              <span>Grammy</span>
+
+              <span>
+                Award Recognition
+              </span>
+
+              <span>
+                Grammy
+              </span>
+
             </div>
 
+
             <h3>
+
               Grammy<br>
               Nominated
+
             </h3>
+
 
             <ul class="credit-list">
 
@@ -1759,6 +2802,7 @@
 
             </ul>
 
+
             <div class="credential-watermark">
               G
             </div>
@@ -1766,23 +2810,45 @@
           </article>
 
 
-          <!-- Diamond -->
+          <!-- DIAMOND -->
 
-          <article class="credential-card medium reveal">
+          <article
+            class="
+              credential-card
+              medium
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Certified Success</span>
-              <span>Diamond</span>
+
+              <span>
+                Certified Success
+              </span>
+
+              <span>
+                Diamond
+              </span>
+
             </div>
 
+
             <h3>
+
               Diamond<br>
               Record
+
             </h3>
 
+
             <ul class="credit-list">
-              <li>Sensualidad</li>
+
+              <li>
+                Sensualidad
+              </li>
+
             </ul>
+
 
             <div class="credential-watermark">
               ◆
@@ -1791,31 +2857,69 @@
           </article>
 
 
-          <!-- Platinum Albums -->
+          <!-- PLATINUM ALBUMS -->
 
-          <article class="credential-card half reveal">
+          <article
+            class="
+              credential-card
+              half
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Certified Success</span>
-              <span>Platinum Albums</span>
+
+              <span>
+                Certified Success
+              </span>
+
+              <span>
+                Platinum Albums
+              </span>
+
             </div>
 
+
             <h3>
+
               Platinum<br>
               Albums
+
             </h3>
+
 
             <ul class="credit-list">
 
-              <li>Revenge of the Dreamers III</li>
-              <li>Planet Her</li>
-              <li>Mala Santa</li>
-              <li>Uno</li>
-              <li>CNCO</li>
-              <li>EMMANUEL</li>
-              <li>Culture</li>
+              <li>
+                Revenge of the Dreamers III
+              </li>
+
+              <li>
+                Planet Her
+              </li>
+
+              <li>
+                Mala Santa
+              </li>
+
+              <li>
+                Uno
+              </li>
+
+              <li>
+                CNCO
+              </li>
+
+              <li>
+                EMMANUEL
+              </li>
+
+              <li>
+                Culture
+              </li>
 
             </ul>
+
 
             <div class="credential-watermark">
               P
@@ -1824,29 +2928,61 @@
           </article>
 
 
-          <!-- Platinum singles -->
+          <!-- PLATINUM SINGLES -->
 
-          <article class="credential-card half reveal">
+          <article
+            class="
+              credential-card
+              half
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Certified Success</span>
-              <span>Platinum Singles</span>
+
+              <span>
+                Certified Success
+              </span>
+
+              <span>
+                Platinum Singles
+              </span>
+
             </div>
 
+
             <h3>
+
               Platinum<br>
               Singles
+
             </h3>
+
 
             <ul class="credit-list">
 
-              <li>Surround Sound</li>
-              <li>Costa Rica</li>
-              <li>Down Bad</li>
-              <li>BMO</li>
-              <li>Crushed Up</li>
+              <li>
+                Surround Sound
+              </li>
+
+              <li>
+                Costa Rica
+              </li>
+
+              <li>
+                Down Bad
+              </li>
+
+              <li>
+                BMO
+              </li>
+
+              <li>
+                Crushed Up
+              </li>
 
             </ul>
+
 
             <div class="credential-watermark">
               ×
@@ -1855,28 +2991,57 @@
           </article>
 
 
-          <!-- Gold -->
+          <!-- GOLD -->
 
-          <article class="credential-card large reveal">
+          <article
+            class="
+              credential-card
+              large
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Certified Success</span>
-              <span>Gold Releases</span>
+
+              <span>
+                Certified Success
+              </span>
+
+              <span>
+                Gold Releases
+              </span>
+
             </div>
 
+
             <h3>
+
               Gold<br>
               Releases
+
             </h3>
+
 
             <ul class="credit-list">
 
-              <li>The Forever Story</li>
-              <li>Signed To The Streets 3</li>
-              <li>Dance Now</li>
-              <li>Never</li>
+              <li>
+                The Forever Story
+              </li>
+
+              <li>
+                Signed To The Streets 3
+              </li>
+
+              <li>
+                Dance Now
+              </li>
+
+              <li>
+                Never
+              </li>
 
             </ul>
+
 
             <div class="credential-watermark">
               AU
@@ -1885,24 +3050,45 @@
           </article>
 
 
-          <!-- Streams -->
+          <!-- STREAMS -->
 
-          <article class="credential-card medium reveal">
+          <article
+            class="
+              credential-card
+              medium
+              reveal
+            "
+          >
 
             <div class="credential-top">
-              <span>Global Reach</span>
-              <span>Beyond Certifications</span>
+
+              <span>
+                Global Reach
+              </span>
+
+              <span>
+                Beyond Certifications
+              </span>
+
             </div>
 
+
             <h3>
+
               Billions<br>
               Of Streams
+
             </h3>
 
+
             <p class="section-copy">
-              Additional work across our network has generated
-              billions of global streams beyond formal certifications.
+
+              Additional work across our network
+              has generated billions of global streams
+              beyond formal certifications.
+
             </p>
+
 
             <div class="credential-watermark">
               ∞
@@ -1918,22 +3104,42 @@
 
 
     <!-- =======================================================
-         LIVE / TOURING
+         GLOBAL TOURING
     ======================================================== -->
 
-    <section class="section touring" id="live">
+    <section
+      class="section touring"
+      id="live"
+    >
+
+
+      <div
+        class="touring-word"
+        aria-hidden="true"
+      >
+
+        LIVE
+
+      </div>
+
 
       <div class="container">
+
 
         <div class="touring-title reveal">
 
           <span class="section-number">
+
             04 / Global Touring
+
           </span>
 
+
           <h2 class="section-title">
+
             From Studios<br>
             To Stadiums.
+
           </h2>
 
         </div>
@@ -1941,34 +3147,82 @@
 
         <div class="artist-list">
 
-          <div class="artist-row reveal">
-            <span>Coldplay</span>
-            <span>Global Touring</span>
-          </div>
 
           <div class="artist-row reveal">
-            <span>Halsey</span>
-            <span>Live Production</span>
+
+            <span>
+              Coldplay
+            </span>
+
+            <span>
+              Global Touring
+            </span>
+
           </div>
 
-          <div class="artist-row reveal">
-            <span>Ayra Starr</span>
-            <span>Global Touring</span>
-          </div>
 
           <div class="artist-row reveal">
-            <span>Dreamville Artists</span>
-            <span>Touring & Production</span>
+
+            <span>
+              Halsey
+            </span>
+
+            <span>
+              Live Production
+            </span>
+
           </div>
 
-          <div class="artist-row reveal">
-            <span>YSL Records Artists</span>
-            <span>Live Production</span>
-          </div>
 
           <div class="artist-row reveal">
-            <span>Elyanna</span>
-            <span>Global Touring</span>
+
+            <span>
+              Ayra Starr
+            </span>
+
+            <span>
+              Global Touring
+            </span>
+
+          </div>
+
+
+          <div class="artist-row reveal">
+
+            <span>
+              Dreamville Artists
+            </span>
+
+            <span>
+              Touring & Production
+            </span>
+
+          </div>
+
+
+          <div class="artist-row reveal">
+
+            <span>
+              YSL Records Artists
+            </span>
+
+            <span>
+              Live Production
+            </span>
+
+          </div>
+
+
+          <div class="artist-row reveal">
+
+            <span>
+              Elyanna
+            </span>
+
+            <span>
+              Global Touring
+            </span>
+
           </div>
 
         </div>
@@ -1986,15 +3240,21 @@
 
       <div class="container">
 
+
         <div class="festival-heading reveal">
 
           <span class="section-number">
+
             05 / Major Stages
+
           </span>
 
+
           <h2 class="section-title">
+
             Global<br>
             Stages.
+
           </h2>
 
         </div>
@@ -2042,8 +3302,10 @@
 
 
         <p class="festival-note reveal">
+
           Large-scale productions across North America,
           Europe, and the Middle East.
+
         </p>
 
       </div>
@@ -2055,30 +3317,42 @@
          BRAND PARTNERSHIPS
     ======================================================== -->
 
-    <section class="section" id="brands">
+    <section
+      class="section"
+      id="brands"
+    >
 
       <div class="container">
 
+
         <div class="brands-heading">
+
 
           <div class="reveal">
 
             <span class="section-number">
+
               06 / Partnerships
+
             </span>
 
+
             <h2 class="section-title">
+
               Beyond<br>
               Music.
+
             </h2>
 
           </div>
 
 
           <p class="section-copy reveal">
+
             Our extended network has contributed to campaigns
             with major global brands and high-level marketing
             and partnership opportunities.
+
           </p>
 
         </div>
@@ -2115,22 +3389,95 @@
 
     <section class="manifesto">
 
+
       <img
         src="assets/images/logo.jpeg"
         class="manifesto-logo"
         alt=""
       />
 
+
       <div class="container reveal">
 
+
         <span class="eyebrow">
-          The No Luck Model
+
+          The No Luck Model · No Fragmentation · No Dependency
+
         </span>
 
+
         <h2 style="margin-top: 30px;">
+
           We don't build releases.
-          <span>We build artist ecosystems.</span>
+
+          <span>
+            We build artist ecosystems.
+          </span>
+
         </h2>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         LARGE MOVING STATEMENT
+    ======================================================== -->
+
+    <section class="noluck-statement">
+
+      <div class="statement-track">
+
+        <span>
+          No Luck
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
+
+        <span>
+          Global Scale
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
+
+        <span>
+          Artist Ownership
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
+
+
+        <span>
+          No Luck
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
+
+        <span>
+          Global Scale
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
+
+        <span>
+          Artist Ownership
+        </span>
+
+        <span class="statement-star">
+          ✦
+        </span>
 
       </div>
 
@@ -2141,9 +3488,19 @@
          CONTACT
     ======================================================== -->
 
-    <section class="section contact" id="contact">
+    <section
+      class="section contact"
+      id="contact"
+    >
 
-      <div class="container contact-inner reveal">
+      <div
+        class="
+          container
+          contact-inner
+          reveal
+        "
+      >
+
 
         <img
           src="assets/images/logo.jpeg"
@@ -2151,40 +3508,59 @@
           class="contact-logo"
         />
 
+
         <span class="eyebrow">
+
           No Luck Enterprises
+
         </span>
 
+
         <h2 style="margin-top: 26px;">
+
           Build What's
-          <span>Next.</span>
+
+          <span>
+            Next.
+          </span>
+
         </h2>
 
+
         <p class="contact-copy">
+
           Artist development. Strategic partnerships.
           Global infrastructure. Long-term value.
+
         </p>
 
 
         <!--
-          IMPORTANT:
-          These buttons do not have emails attached yet.
-
-          Once you get the real company email,
-          I can make them clickable.
+          Once your brother gives us the real company
+          email / contact information, we will make
+          these buttons functional.
         -->
 
         <div class="contact-links">
 
-          <a href="#" class="contact-link">
+          <a
+            href="#contact"
+            class="contact-link"
+          >
             Artist Inquiries
           </a>
 
-          <a href="#" class="contact-link">
+          <a
+            href="#contact"
+            class="contact-link"
+          >
             Partnerships
           </a>
 
-          <a href="#" class="contact-link">
+          <a
+            href="#contact"
+            class="contact-link"
+          >
             Business
           </a>
 
@@ -2193,6 +3569,7 @@
       </div>
 
     </section>
+
 
   </main>
 
@@ -2206,11 +3583,18 @@
     <div class="container footer-inner">
 
       <span>
-        © <span id="year"></span> No Luck Enterprises
+
+        ©
+        <span id="year"></span>
+        No Luck Enterprises
+
       </span>
 
+
       <span>
+
         Creation · Marketing · Distribution · Monetization
+
       </span>
 
     </div>
@@ -2224,32 +3608,69 @@
 
   <script>
 
-    /* YEAR */
+    /* =======================================================
+       CURRENT YEAR
+    ======================================================== */
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
 
-    /* NAVBAR SCROLL */
+    /* =======================================================
+       LOADING SCREEN
+    ======================================================== */
 
-    const navbar =
-      document.getElementById("navbar");
+    const loader =
+      document.getElementById("loader");
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener("load", () => {
 
-      if (window.scrollY > 30) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+      setTimeout(() => {
+
+        loader.classList.add("hide");
+
+      }, 1650);
 
     });
 
 
-    /* REVEAL ON SCROLL */
+    /* =======================================================
+       NAVBAR ON SCROLL
+    ======================================================== */
+
+    const navbar =
+      document.getElementById("navbar");
+
+    function updateNavbar() {
+
+      if (window.scrollY > 30) {
+
+        navbar.classList.add("scrolled");
+
+      } else {
+
+        navbar.classList.remove("scrolled");
+
+      }
+
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateNavbar,
+      { passive: true }
+    );
+
+    updateNavbar();
+
+
+    /* =======================================================
+       REVEAL ON SCROLL
+    ======================================================== */
 
     const revealElements =
       document.querySelectorAll(".reveal");
+
 
     const revealObserver =
       new IntersectionObserver(
@@ -2278,6 +3699,7 @@
 
       );
 
+
     revealElements.forEach(element => {
 
       revealObserver.observe(element);
@@ -2285,7 +3707,81 @@
     });
 
 
-    /* MOBILE MENU */
+    /* =======================================================
+       HERO LOGO MOUSE MOVEMENT
+    ======================================================== */
+
+    const hero =
+      document.querySelector(".hero");
+
+    const heroLogo =
+      document.getElementById("heroLogo");
+
+
+    if (hero && heroLogo) {
+
+      hero.addEventListener(
+        "mousemove",
+        event => {
+
+          if (window.innerWidth <= 768) {
+            return;
+          }
+
+          const rect =
+            hero.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+
+          const moveX =
+            (x / rect.width - .5) * 18;
+
+          const moveY =
+            (y / rect.height - .5) * 18;
+
+
+          heroLogo.style.setProperty(
+            "--mx",
+            `${moveX}px`
+          );
+
+          heroLogo.style.setProperty(
+            "--my",
+            `${moveY}px`
+          );
+
+        }
+      );
+
+
+      hero.addEventListener(
+        "mouseleave",
+        () => {
+
+          heroLogo.style.setProperty(
+            "--mx",
+            "0px"
+          );
+
+          heroLogo.style.setProperty(
+            "--my",
+            "0px"
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =======================================================
+       MOBILE MENU
+    ======================================================== */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -2293,43 +3789,93 @@
     const mobileNav =
       document.getElementById("mobileNav");
 
+
+    function closeMobileMenu() {
+
+      mobileNav.classList.remove("open");
+
+      menuButton.classList.remove("active");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+    }
+
+
     menuButton.addEventListener(
       "click",
       () => {
 
-        mobileNav.classList.toggle("open");
+        const isOpen =
+          mobileNav.classList.toggle("open");
+
+        menuButton.classList.toggle(
+          "active",
+          isOpen
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
 
         document.body.classList.toggle(
-          "menu-open"
+          "menu-open",
+          isOpen
         );
 
       }
     );
 
 
-    /* CLOSE MOBILE MENU
-       AFTER CLICKING A LINK
-    */
-
     const mobileLinks =
       mobileNav.querySelectorAll("a");
+
 
     mobileLinks.forEach(link => {
 
       link.addEventListener(
         "click",
-        () => {
-
-          mobileNav.classList.remove("open");
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
-        }
+        closeMobileMenu
       );
 
     });
+
+
+    /* CLOSE MENU WITH ESC KEY */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key === "Escape") {
+
+          closeMobileMenu();
+
+        }
+
+      }
+    );
+
+
+    /* =======================================================
+       REMOVE LOADER IF SOMETHING WEIRD HAPPENS
+
+       This guarantees visitors never get stuck
+       on the loading screen.
+    ======================================================== */
+
+    setTimeout(() => {
+
+      loader.classList.add("hide");
+
+    }, 3500);
 
   </script>
 
